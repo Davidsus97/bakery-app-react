@@ -42,6 +42,23 @@ const countReducer = (state, action) => {
   }
 };
 
+const AddItem = ({ name, onChange, onAdd }) => (
+  <div>
+    <input type="text" value={name} onChange={onChange} />
+    <button type="button" onClick={onAdd}>
+      +
+    </button>
+  </div>
+ );
+
+ const List = ({ list }) => (
+  <ul>
+    {list.map((item) => (
+      <li key={item.id}>{item.name}</li>
+      ))}
+  </ul>
+ );
+ 
 const App = () => {    //function App what is the difference question mark
                            //problem with upload pictures
                            //<ul>{listItems}</ul>  111
@@ -95,22 +112,10 @@ const App = () => {    //function App what is the difference question mark
    );
  };
  
- const AddItem = ({ name, onChange, onAdd }) => (
-  <div>
-    <input type="text" value={name} onChange={onChange} />
-    <button type="button" onClick={onAdd}>
-      +
-    </button>
-  </div>
- );
 
- const List = ({ list }) => (
-  <ul>
-    {list.map((item) => (
-      <li key={item.id}>{item.name}</li>
-      ))}
-  </ul>
- );
+
+
+
 
 
 
