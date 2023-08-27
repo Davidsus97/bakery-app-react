@@ -8,6 +8,13 @@ const listItems = items.map((number) =>
 <li>{number}</li>
 );*/
 
+const Logo = () => {
+  return (
+    <header>
+      <img src='images/logo.png' alt='' /> 
+    </header>
+  );
+};
 
 const initialList = [
  {
@@ -83,9 +90,8 @@ const App = () => {    //function App what is the difference question mark
 
   return (
     <div>
-     <header>      
-       <img src='images/logo.png' alt='' /> 
-     </header>
+      <Logo>
+      </Logo>
      <body>
         Holidays
      </body>
