@@ -10,8 +10,12 @@ const listItems = items.map((number) =>
 
 const Logo = () => {
   return (
-    <header>
-      <img src='images/logo.png' alt='' /> 
+    <header style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <img src='images/logo1.png' alt='' /> 
     </header>
   );
 };
@@ -27,14 +31,6 @@ const initialList = [
  }
 ];
 
-const listReducer = (state, action) => {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      return state.concat({ name: action.name, id: action.id });
-      default:
-        throw new Error();
-}
-};
 
 const initialState = { count: 0 };
 
@@ -53,7 +49,7 @@ const AddItem = ({ name, onChange, onAdd }) => (
   <div>
     <input type="text" value={name} onChange={onChange} />
     <button type="button" onClick={onAdd}>
-      +
+      Add
     </button>
   </div>
  );
@@ -69,22 +65,21 @@ const AddItem = ({ name, onChange, onAdd }) => (
 const App = () => {    //function App what is the difference question mark
                            //problem with upload pictures
                            //<ul>{listItems}</ul>  111
-   const [list, dispatcherList] = React.useReducer(
-    listReducer,
-    initialList
-    );
-
+   const [list, setList] = React.useState(initialList);
+   const [name, setName] = React.useState('');
    const [state, dispatch] = useReducer(countReducer, initialState);
 
-   const [name, setName] = React.useState('');
+   
 
    function handleChange(event){
     setName(event.target.value);
    }
 
    function handleAdd(){
-    dispatcherList({ type: 'ADD_ITEM', name, id: uuidv4() });
-  
+    const newList = list.concat({name,id: uuidv4 ()});
+
+    setList(newList);
+
     setName('');
    }
 
@@ -104,16 +99,17 @@ const App = () => {    //function App what is the difference question mark
        <button onClick={() => dispatch({ type: 'INCREMENT' })}>+1</button>
       </div>
 
- 
-     <div>
-      <AddItem
-       name={name}
-       onChange={handleChange}
-       onAdd={handleAdd}
-       />
-       <List list={list} />
-       </div>
+      <div>
+        <AddItem
+        name={name}
+        onChange={handleChange}
+        onAdd={handleAdd}
+        />
+        <List list={list} />
+      </div>
 
+      
+     
      </div>
    );
  };
